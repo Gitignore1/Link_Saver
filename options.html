@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Link Categorizer Options</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .category-list {
+      margin-top: 20px;
+    }
+    .category-item {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Link Categorizer Options</h1>
+  <h2>Manage Categories</h2>
+  <input id="newCategoryInput" type="text" placeholder="Enter new category name" />
+  <button id="addCategoryButton">Add Category</button>
+  <div class="category-list">
+    <h3>Existing Categories:</h3>
+    <ul id="categoryList"></ul>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const newCategoryInput = document.getElementById('newCategoryInput');
+      const addCategoryButton = document.getElementById('addCategoryButton');
+      const categoryList = document.getElementById('categoryList');
+
+      // Load existing categories
+      chrome.storage.sync.get(['categories'], (data) => {
+        const categories = data.categories || [];
+        categories.forEach((cat) => {
+          const li = document.createElement('li');
+          li.textContent = cat;
+          li.classList.add('category-item');
+          categoryList.appendChild(li);
+        });
+      });
+
+      // Add a new category
+      addCategoryButton.addEventListener('click', () => {
+        const newCategory = newCategoryInput.value.trim();
+        if (newCategory) {
+          chrome.runtime.sendMessage({ type: 'addCategory', payload: newCategory }, (response) => {
+            if (response.success) {
+              const li = document.createElement('li');
+              li.textContent = newCategory;
+              li.classList.add('category-item');
+              categoryList.appendChild(li);
+              newCategoryInput.value = '';
+            } else {
+              alert(response.error || 'Failed to add category.');
+            }
+          });
+        } else {
+          alert('Please enter a valid category name.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

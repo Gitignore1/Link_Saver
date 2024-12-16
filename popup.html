@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Link Categorizer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Link Categorizer</h1>
+
+  <h2>Add a New Link</h2>
+  <input id="linkInput" type="text" placeholder="Enter link URL">
+  <select id="categorySelect">
+    <option value="">Select a category</option>
+  </select>
+  <button id="saveLinkButton">Save Link</button>
+
+  <hr>
+
+
+  <h2>View Links by Category</h2>
+  <select id="viewCategorySelect">
+    <option value="">Select a category</option>
+  </select>
+  <ul id="linkList"></ul>
+ 
+  <h2>Add a New Category</h2>
+  <button id="newCategoryBtn">Add New Category</button>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

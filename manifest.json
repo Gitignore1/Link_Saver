@@ -1,0 +1,15 @@
+{
+   "manifest_version": 3,
+   "name": "Link Categorizer",
+   "description": "Store and organize links into user-defined categories.",
+   "version": "1.0",
+   "permissions": ["storage", "tabs"],
+   "action": {
+     "default_popup": "popup.html"
+   },
+   "background": {
+     "service_worker": "background.js"
+   },
+   "options_page": "options.html"
+ }
+ 
