@@ -1,6 +1,6 @@
 {
    "manifest_version": 3,
-   "name": "Link Categorizer",
+   "name": "MCAT Link Storage",
    "description": "Store and organize links into user-defined categories.",
    "version": "1.0",
    "permissions": ["storage", "tabs"],
